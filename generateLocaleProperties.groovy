@@ -15,8 +15,8 @@ items.getResult().each() { item ->
 
      item.getDeclaredattributedescriptors().each() { descriptor ->
           if (extensionName.equals(descriptor.getExtensionName())) {
-   		        println("type." + item.getCode() + "." + descriptor.getQualifier() + ".name=" + (descriptor.getName() == null ? "" : descriptor.getName()));
-    		      println("type." + item.getCode() + "." + descriptor.getQualifier() + ".description=" + (descriptor.getDescription() == null ? "" : descriptor.getDescription()));
+               println("type." + item.getCode() + "." + descriptor.getQualifier() + ".name=" + (descriptor.getName() == null ? "" : descriptor.getName()));
+               println("type." + item.getCode() + "." + descriptor.getQualifier() + ".description=" + (descriptor.getDescription() == null ? "" : descriptor.getDescription()));
                hasValue = true;
           }
      }
