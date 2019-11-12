@@ -1,0 +1,14 @@
+INSERT_UPDATE SearchRestriction; code[unique = true]; principal(uid); query; restrictedType(code); active; generate
+"#% beforeEach:
+String query =  line.get(new Integer(3));
+de.hybris.platform.servicelayer.search.FlexibleSearchService flexService = de.hybris.platform.core.Registry.getApplicationContext().getBean(""flexibleSearchService"");
+String approvedQuery = ""SELECT {pk} FROM {CmsApprovalStatus} WHERE {code} = 'approved'"";
+String unapprovedQuery = ""SELECT {pk} FROM {CmsApprovalStatus} WHERE {code} = 'unapproved'"";
+de.hybris.platform.core.model.enumeration.EnumerationValueModel approvedPk = flexService.search(approvedQuery).getResult().get(0);
+de.hybris.platform.core.model.enumeration.EnumerationValueModel unapprovedPk = flexService.search(unapprovedQuery).getResult().get(0);
+
+query = query.replace(""[approved]"", approvedPk.getPk().toString());
+query = query.replace(""[unapproved]"", unapprovedPk.getPk().toString());
+line.put(new Integer(3), query);
+"
+; Backend_AbstractPageApprovalStatus ; contentEditorVG ;" {item:approvalStatus} IN ([approved], [unapproved])"; AbstractPage ; true ; true
